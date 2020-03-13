@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" metadata-complete="false" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+        http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+
+  <display-name>Web Application</display-name>
+
+  <servlet>
+    <servlet-name>AddressBook</servlet-name>
+    <servlet-class>com.iyasu.addressbookfinal.servlet.AddressBookServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AddressBook</servlet-name>
+    <url-pattern>/a/*</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AddressBookJsp</servlet-name>
+    <servlet-class>com.iyasu.addressbookfinal.servlet.AddressBookServletJsp</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AddressBookJsp</servlet-name>
+    <url-pattern>/j/*</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>SimpleDump</servlet-name>
+    <servlet-class>com.iyasu.addressbookfinal.servlet.SimpleDumpServlet</servlet-class>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>SimpleDump</servlet-name>
+    <url-pattern>/dump/*</url-pattern>
+  </servlet-mapping>
+
+
+</web-app>
