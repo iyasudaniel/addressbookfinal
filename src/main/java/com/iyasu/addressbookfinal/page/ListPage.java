@@ -19,7 +19,7 @@ public class ListPage extends Page {
       + "         <a href='delete?id=%s'>Delete</a> %n" // id
       + "       </td> %n"
       + "       <td> %n"
-      + "         %s %s %n"  // firstname lastname
+      + "         %s %s %s %s %s %s %s %n"  // firstname lastname street city state country zip
       + "</td> %n"
       + "      </tr> %n";
   private static final String TEXT_BOTTOM = "    </table> %n";
@@ -29,7 +29,9 @@ public class ListPage extends Page {
     String text = String.format(TEXT_TOP);
     for (Object obj : data) {
       Person p = (Person) obj;
-      text += String.format(TABLE_ROW, p.getId(), p.getId(), p.getFirstName(), p.getLastName());
+      text += String.format(TABLE_ROW, p.getId(),p.getId(), p.getFirstName(), p.getLastName(),
+    		  p.getStreet(),
+    	        p.getCity(),p.getState(),p.getCountry(),p.getPostalCode());
     }
     text += String.format(TEXT_BOTTOM);
     return text;

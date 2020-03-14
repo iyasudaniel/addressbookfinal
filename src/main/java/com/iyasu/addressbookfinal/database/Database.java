@@ -86,6 +86,7 @@ public class Database implements AutoCloseable {
       if (!rs.next()) { // Nothing to read
         return null;
       }
+      
       int count = rs.getMetaData().getColumnCount();
       List<String> data = new ArrayList<>();
       for (int col = 1; col <= count; ++col) {

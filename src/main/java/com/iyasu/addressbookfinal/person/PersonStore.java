@@ -1,6 +1,7 @@
 package com.iyasu.addressbookfinal.person;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.iyasu.addressbookfinal.database.Database;
@@ -35,6 +36,27 @@ public class PersonStore  {
 				pair= Pair.of("lastName", values.get(i));
 
 			}
+			else if (i == 2) {
+				pair= Pair.of("street", values.get(i));
+
+			}
+			else if (i == 3) {
+				pair= Pair.of("city", values.get(i));
+
+			}
+			else if (i == 4) {
+				pair= Pair.of("state", values.get(i));
+
+			}
+			else if (i == 5) {
+				pair= Pair.of("country", values.get(i));
+
+			}
+			else if (i == 6) {
+				pair= Pair.of("postalCode", values.get(i));
+
+			}
+
 			valuePairs.add(pair);
 			 
 		}
@@ -42,8 +64,9 @@ public class PersonStore  {
 	}
 	public Person get(int id) {
 		List<String> personValues = db.get(table, id);
-		if(personValues != null && personValues.size() == 3)
-			return new Person(id, personValues.get(1), personValues.get(2));
+		if( personValues != null && !personValues.isEmpty())
+			return new Person(id, personValues.get(1), personValues.get(2), personValues.get(3), 
+					personValues.get(4), personValues.get(5), personValues.get(6),personValues.get(7) );
 		else
 			return null;
 
@@ -53,7 +76,7 @@ public class PersonStore  {
 		List<List<String>> personStrings = db.getAll(table);
 		for (List<String> pss: personStrings) {
 			int id = Integer.valueOf(pss.get(0));
-			personList.add(new Person(id, pss.get(1), pss.get(2)));
+			personList.add(new Person(id, pss.get(1), pss.get(2), pss.get(3), pss.get(4), pss.get(5), pss.get(6), pss.get(7)));
 		}
 		return personList;
 	}

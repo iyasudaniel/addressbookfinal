@@ -48,7 +48,9 @@ public class AddressBookServlet extends HttpServlet {
 
     String id = request.getParameter("id");
     if (id == null || id.isEmpty() || !id.matches("[0-9]+")) {
-      store.create(toList(request.getParameter("firstname"), request.getParameter("lastname")));
+      store.create(toList(request.getParameter("firstName"), request.getParameter("lastName"),
+    		  request.getParameter("street"),  request.getParameter("city"),  request.getParameter("state"), 
+    		  request.getParameter("country"),  request.getParameter("postalCode")));
     } else if (request.getPathInfo().equals("/delete")) {
       String confirm = request.getParameter("confirm");
       if (confirm != null && confirm.equals("yes")) {
@@ -56,7 +58,9 @@ public class AddressBookServlet extends HttpServlet {
       }
     } else {
       store.update(Integer.parseInt(id),
-          toList(request.getParameter("firstname"), request.getParameter("lastname")));
+          toList(request.getParameter("firstName"), request.getParameter("lastName"),
+        		  request.getParameter("street"),  request.getParameter("city"),  request.getParameter("state"), 
+        		  request.getParameter("country"),  request.getParameter("postalCode")));
     }
     response.sendRedirect("list");
   }
@@ -96,7 +100,7 @@ public class AddressBookServlet extends HttpServlet {
 
     String title = "Add";
     String action = "add";
-    Person person = new Person(0, "", "");
+    Person person = new Person(0, "", "","","","","","");
 
     if (id != null && !id.isEmpty() && id.matches("[0-9]+")) {
       title = "Edit";
