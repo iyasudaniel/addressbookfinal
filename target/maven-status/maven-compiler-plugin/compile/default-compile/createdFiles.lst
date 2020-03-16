@@ -1,3 +1,4 @@
+com\iyasu\addressbookfinal\person\Address.class
 com\iyasu\addressbookfinal\page\DeletePage.class
 com\iyasu\addressbookfinal\person\Person.class
 com\iyasu\addressbookfinal\servlet\SimpleDumpServlet.class

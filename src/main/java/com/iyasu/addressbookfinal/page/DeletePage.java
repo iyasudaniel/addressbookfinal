@@ -14,7 +14,7 @@ public class DeletePage extends Page {
       + "    <form action='delete' method='post'> %n"
       + "      <input type='hidden' id='id' name='id' value='%s'> %n" // id
       + "%n"
-      + "      Delete Person: %s %s.<br> %n" // firstname lastname
+      + "      Delete Person: %s %s.<br> %n" // firstName lastName
       + "      Are you sure?<br> %n"
       + "      <button type='submit' id='confirm' name='confirm' value='yes'>Yes</button> %n"
       + "      <button type='submit' id='confirm' name='confirm' value='no'>No</button> %n"
@@ -23,7 +23,8 @@ public class DeletePage extends Page {
   @Override
   public String getPageBody(List<Object> data) {
     Person p = (Person) data.get(0);
-    return String.format(TEXT, p.getId(), p.getFirstName(), p.getLastName());
+    return String.format(TEXT, p.getId(), p.getFirstName(), p.getLastName(), p.getStreet(),
+            p.getCity(),p.getState(),p.getCountry(),p.getPostalCode());
   }
 
 }

@@ -44,7 +44,9 @@ public class AddressBookServletJsp extends HttpServlet {
 
     String id = request.getParameter("id");
     if (id == null || id.isEmpty() || !id.matches("[0-9]+")) {
-      store.create(toList(request.getParameter("firstname"), request.getParameter("lastname")));
+      store.create(toList(request.getParameter("firstName"), request.getParameter("lastName"), 
+    		  request.getParameter("street"),  request.getParameter("city"),  request.getParameter("state"), 
+    		  request.getParameter("country"),  request.getParameter("postalCode")));
     } else if (request.getServletPath().equals("/delete")) {
       String confirm = request.getParameter("confirm");
       if (confirm != null && confirm.equals("yes")) {
@@ -52,7 +54,8 @@ public class AddressBookServletJsp extends HttpServlet {
       }
     } else {
       store.update(Integer.parseInt(id),
-          toList(request.getParameter("firstname"), request.getParameter("lastname")));
+          toList(request.getParameter("firstName"), request.getParameter("lastName"),request.getParameter("street"),  request.getParameter("city"),  request.getParameter("state"), 
+        		  request.getParameter("country"),  request.getParameter("postalCode")));
     }
     response.sendRedirect("list");
   }
@@ -92,28 +95,48 @@ public class AddressBookServletJsp extends HttpServlet {
 
     String title;
     String action;
-    String firstname;
-    String lastname;
+    String firstName;
+    String lastName;
+     String street;
+     String city;
+     String state;
+     String country;
+     String postalCode;
 
     if (id != null && !id.isEmpty() && id.matches("[0-9]+")) {
       title = "Edit";
       action = "edit";
       Person person = store.get(Integer.parseInt(id));
-      firstname = person.getFirstName();
-      lastname = person.getLastName();
+      firstName = person.getFirstName();
+      lastName = person.getLastName();
+      street = person.getStreet();
+      city = person.getCity();
+      state = person.getState();
+      country = person.getCountry();
+      postalCode = person.getPostalCode();
     } else {
       id = "";
       title = "Add";
       action = "add";
-      firstname = "";
-      lastname = "";
+      firstName = "";
+      lastName = "";
+       street = "";
+       city = "";
+       state = "";
+      country = "";
+       postalCode = "";
     }
 
     request.setAttribute("title", title);
     request.setAttribute("action", action);
     request.setAttribute("id", id);
-    request.setAttribute("firstname", firstname);
-    request.setAttribute("lastname", lastname);
+    request.setAttribute("firstName", firstName);
+    request.setAttribute("lastName", lastName);
+    request.setAttribute("street", street);
+    request.setAttribute("city", city);
+    request.setAttribute("state", state);
+    request.setAttribute("country", country);
+    request.setAttribute("postalCode", postalCode);
     getServletContext().getRequestDispatcher("/jsp/add-edit.jsp").include(request, response);
   }
 
@@ -123,9 +146,16 @@ public class AddressBookServletJsp extends HttpServlet {
     String id = request.getParameter("id");
     Person person = store.get(Integer.parseInt(id));
     request.setAttribute("id", id);
-    request.setAttribute("firstname", person.getFirstName());
-    request.setAttribute("lastname", person.getLastName());
+    if (person != null) {
+    request.setAttribute("firstName", person.getFirstName());
+    request.setAttribute("lastName", person.getLastName());
+    request.setAttribute("street", person.getStreet());
+    request.setAttribute("city", person.getCity());
+    request.setAttribute("state", person.getState());
+    request.setAttribute("country", person.getCountry());
+    request.setAttribute("postalCode", person.getPostalCode());
     getServletContext().getRequestDispatcher("/jsp/delete.jsp").include(request, response);
+  }
   }
 
   private void doList(HttpServletRequest request, HttpServletResponse response, PrintWriter out)
